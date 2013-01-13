@@ -5,6 +5,7 @@ describe "mongoid_auto_increment" do
     @book1 = Book.create :title => "The Rails Way"
     @book2 = Book.create :title => "The Ruby Programming Language "
     @book3 = Book.create :title => "Metaprogramming Ruby"
+    @book4 = Book.create :title => "Agile Web Development with Rails", :sequence => 42
 
     @order1 = Order.create :description => "First Order"
     @order2 = Order.create :description => "Second Order"
@@ -33,6 +34,10 @@ describe "mongoid_auto_increment" do
 
     it "should assign id 3 to the third book" do
       expect(@book3.sequence).to eq(3)
+    end
+
+    it "should preserve id 42 on the fourth book" do
+      expect(@book4.sequence).to eq(42)
     end
 
     it "should assign id 1 to the first comment" do
