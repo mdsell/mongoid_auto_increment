@@ -5,7 +5,12 @@ module MongoidAutoIncrement
 
   module ClassMethods
     def auto_increment(name, options={})
-      field name, :type => Integer
+      if name.to_sym == :_id
+        field name, :type => Integer, :overwrite => true
+      else
+        field name, :type => Integer
+      end
+
       seq_name = "#{self.name.downcase}_#{name}"
       @@incrementor = MongoidAutoIncrement::Incrementor.new unless defined? @@incrementor
 

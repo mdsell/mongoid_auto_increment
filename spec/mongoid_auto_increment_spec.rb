@@ -3,20 +3,21 @@ require "spec_helper"
 describe "mongoid_auto_increment" do
 
   before(:each) do
-    @book1 = Book.create :name => "The Rails Way"
-    @book2 = Book.create :name => "The Ruby Programming Language "
-    @book3 = Book.create :name => "Metaprogramming Ruby"
-    @order1 = Order.create :name => "First Order"
-    @order2 = Order.create :name => "Second Order"
-    @order3 = Order.create :name => "Last Order"
-    @post1 = Post.create :name => "First Post"
-    @post2 = Post.create :name => "Second Post"
-    @post3 = Post.create :name => "Last Post"
-    @comment1 = @post1.comments.create :name => "First Comment"
-    @comment2 = @post1.comments.create :name => "Second Comment"
+    @book1 = Book.create :title => "The Rails Way"
+    @book2 = Book.create :title => "The Ruby Programming Language "
+    @book3 = Book.create :title => "Metaprogramming Ruby"
+    @order1 = Order.create :title => "First Order"
+    @order2 = Order.create :title => "Second Order"
+    @order3 = Order.create :title => "Last Order"
+    @post1 = Post.create :title => "First Post"
+    @post2 = Post.create :title => "Second Post"
+    @post3 = Post.create :title => "Last Post"
+    @comment1 = @post1.comments.create :text => "First Comment"
+    @comment2 = @post1.comments.create :text => "Second Comment"
     @invoice1 = Invoice.create :name => "First invoice"
     @invoice2 = Invoice.create :name => "Second invoice"
     @invoice3 = Invoice.create :name => "Third invoice"
+    @author1 = Author.create :name => "John Smith"
   end
 
   describe "single auto-increment field" do
@@ -90,6 +91,12 @@ describe "mongoid_auto_increment" do
     end
     it "should have id 1015" do
       @invoice3.num.should eq 1015
+    end
+  end
+
+  describe "overwriting _id" do
+    it "provides the overwrite option" do
+      @author1.fields['_id'].options[:overwrite].should be_true
     end
   end
 end
