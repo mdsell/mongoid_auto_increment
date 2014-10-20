@@ -16,13 +16,13 @@ end
 require 'jeweler'
 Jeweler::Tasks.new do |gem|
   # gem is a Gem::Specification... see http://docs.rubygems.org/read/chapter/20 for more options
-  gem.name = "mongoid_auto_increment"
-  gem.homepage = "http://github.com/proton/mongoid_auto_increment"
+  gem.name = "mongoid-auto-increment"
+  gem.homepage = "http://github.com/raws/mongoid-auto-increment"
   gem.license = "MIT"
   gem.summary = %q{Auto-incrementing fields for Mongoid documents}
   gem.description = %q{Add SQL like auto-incrementing fields to your Mongoid documents.}
-  gem.email = "psavichev@gmail.com"
-  gem.authors = ["Peter Savichev (proton)"]
+  gem.email = ["psavichev@gmail.com", "ross@rosspaffett.com"]
+  gem.authors = ["Peter Savichev (proton)", "Ross Paffett"]
   # dependencies defined in Gemfile
 end
 Jeweler::RubygemsDotOrgTasks.new
@@ -40,7 +40,7 @@ RDoc::Task.new do |rdoc|
   version = File.exist?('VERSION') ? File.read('VERSION') : ""
 
   rdoc.rdoc_dir = 'rdoc'
-  rdoc.title = "mongoid_auto_increment #{version}"
+  rdoc.title = "mongoid-auto-increment #{version}"
   rdoc.rdoc_files.include('README*')
   rdoc.rdoc_files.include('lib/**/*.rb')
 end
@@ -50,7 +50,7 @@ task :build do
 	puts "Regenerating gemspec"
   system "rake gemspec"
 	puts "Building"
-  system "gem build mongoid_auto_increment.gemspec"
+  system "gem build mongoid-auto-increment.gemspec"
 end
 
 desc "Release gem"
