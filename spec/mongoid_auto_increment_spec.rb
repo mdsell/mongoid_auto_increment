@@ -1,95 +1,100 @@
 require "spec_helper"
 
 describe "mongoid_auto_increment" do
-
   before(:each) do
-    @book1 = Book.create :name => "The Rails Way"
-    @book2 = Book.create :name => "The Ruby Programming Language "
-    @book3 = Book.create :name => "Metaprogramming Ruby"
-    @order1 = Order.create :name => "First Order"
-    @order2 = Order.create :name => "Second Order"
-    @order3 = Order.create :name => "Last Order"
-    @post1 = Post.create :name => "First Post"
-    @post2 = Post.create :name => "Second Post"
-    @post3 = Post.create :name => "Last Post"
-    @comment1 = @post1.comments.create :name => "First Comment"
-    @comment2 = @post1.comments.create :name => "Second Comment"
-    @invoice1 = Invoice.create :name => "First invoice"
-    @invoice2 = Invoice.create :name => "Second invoice"
-    @invoice3 = Invoice.create :name => "Third invoice"
+    @book1 = Book.create :title => "The Rails Way"
+    @book2 = Book.create :title => "The Ruby Programming Language "
+    @book3 = Book.create :title => "Metaprogramming Ruby"
+
+    @order1 = Order.create :description => "First Order"
+    @order2 = Order.create :description => "Second Order"
+    @order3 = Order.create :description => "Last Order"
+
+    @post1 = Post.create :title => "First Post"
+    @post2 = Post.create :title => "Second Post"
+    @post3 = Post.create :title => "Last Post"
+
+    @comment1 = @post1.comments.create :body => "First Comment"
+    @comment2 = @post1.comments.create :body => "Second Comment"
+
+    @invoice1 = Invoice.create :description => "First invoice"
+    @invoice2 = Invoice.create :description => "Second invoice"
+    @invoice3 = Invoice.create :description => "Third invoice"
   end
 
   describe "single auto-increment field" do
-    it "should have id 1" do
-      @book1.sequence.should eql 1
+    it "should assign id 1 to the first book" do
+      expect(@book1.sequence).to eq(1)
     end
 
-    it "should have id 2" do
-      @book2.sequence.should eql 2
+    it "should assign id 2 to the second book" do
+      expect(@book2.sequence).to eq(2)
     end
 
-    it "should have id 3" do
-      @book3.sequence.should eql 3
+    it "should assign id 3 to the third book" do
+      expect(@book3.sequence).to eq(3)
     end
 
-    it "should have id 1" do
-      @comment1.idn.should eql 1
+    it "should assign id 1 to the first comment" do
+      expect(@comment1.idn).to eq(1)
     end
 
-    it "should have id 2" do
-      @comment2.idn.should eql 2
+    it "should assign id 2 to the second comment" do
+      expect(@comment2.idn).to eq(2)
     end
   end
 
   describe "single auto-increment field with seed 1000" do
-    it "should have id 1001" do
-      @order1.num.should eql 1001
+    it "should assign id 1001 to the first order" do
+      expect(@order1.num).to eq(1001)
     end
 
-    it "should have id 1002" do
-      @order2.num.should eql 1002
+    it "should assign id 1002 to the second order" do
+      expect(@order2.num).to eq(1002)
     end
 
-    it "should have id 1003" do
-      @order3.num.should eql 1003
+    it "should assign id 1003 to the third order" do
+      expect(@order3.num).to eq(1003)
     end
   end
 
   describe "two auto-increment fields" do
-    it "should have id 1" do
-      @post1.key.should eql 501
+    it "should assign key 1 to the first post" do
+      expect(@post1.key).to eq(501)
     end
 
-    it "should have id 2" do
-      @post2.key.should eql 502
+    it "should assign key 2 to the second post" do
+      expect(@post2.key).to eq(502)
     end
 
-    it "should have id 3" do
-      @post3.key.should eql 503
+    it "should assign key 3 to the third post" do
+      expect(@post3.key).to eq(503)
     end
 
-    it "should have id 1" do
-      @post1.num.should eql 1
+    it "should assign num 1 to the first post" do
+      expect(@post1.num).to eq(1)
     end
 
-    it "should have id 2" do
-      @post2.num.should eql 2
+    it "should assign num 2 to the second post" do
+      expect(@post2.num).to eq(2)
     end
 
-    it "should have id 3" do
-      @post3.num.should eql 3
+    it "should assign num 3 to the third post" do
+      expect(@post3.num).to eq(3)
     end
   end
 
   describe "auto-increment with step" do
-    it "should have id 1005" do
-      @invoice1.num.should eq 1005
+    it "should assign num 1005 to the first invoice" do
+      expect(@invoice1.num).to eq(1005)
     end
-    it "should have id 1010" do
-      @invoice2.num.should eq 1010
+
+    it "should assign num 1010 to the second invoice" do
+      expect(@invoice2.num).to eq(1010)
     end
-    it "should have id 1015" do
-      @invoice3.num.should eq 1015
+
+    it "should assign num 1015 to the third invoice" do
+      expect(@invoice3.num).to eq(1015)
     end
   end
 end

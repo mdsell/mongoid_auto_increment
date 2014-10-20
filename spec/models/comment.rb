@@ -1,7 +1,7 @@
 class Comment
   include Mongoid::Document
 
-  field :text
+  field :body
 
   auto_increment :idn
 
