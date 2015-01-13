@@ -22,7 +22,7 @@ else
 end
 Mongoid.logger = Logger.new($stdout)
 
-DatabaseCleaner.orm = "mongoid"
+DatabaseCleaner.orm = :mongoid
 
 RSpec.configure do |config|
   config.before(:all) do
